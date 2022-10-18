@@ -1,0 +1,109 @@
+Sub Creu()
+    Dim media As Double
+    Dim soma As Double
+    
+  media = WorksheetFunction.Average(Range("A1:A10"))
+  soma = WorksheetFunction.Sum(Range("A1:A10"))
+  MsgBox "a soma total do intervalo é : " & soma
+  MsgBox "a media total do intervalo é : " & media
+    
+End Sub
+
+Private Sub CommandButton1_Click()
+    Creu
+End Sub
+
+[20:01, 18/10/2022] Lucas Netto Borges: Sub creu03()
+
+pedidos = 0
+Dim porcenta As Double
+
+cont = Application.WorksheetFunction.CountA(Planilha1.Range("A1:A1048576"))
+
+' leitura das variaveis
+
+For i = 1 To cont
+    leitura = Trim(Planilha1.Cells(i + 1, 3).Value)
+    
+    If leitura = "Atendido" Then
+        quantidade = quantidade + 1
+    End If
+Next i
+
+'contas
+
+porcenta = quantidade * 100
+
+Total = porcenta / cont
+
+' ilustração do resultado
+MsgBox "a porcentagem de pedidos atendidos é: ", vbInformation & Total
+
+
+
+End Sub
+[20:04, 18/10/2022] Lucas Netto Borges: Sub Proposto01()
+Dim linha As Integer
+
+Dim numPares As Integer
+Dim numM5 As Integer
+
+Dim posMa As Integer
+Dim maior As Integer
+
+Dim posMe As Integer
+Dim menor As Integer
+
+Dim Resultado As Integer
+Dim cont As Integer
+
+cont = Application.WorksheetFunction.CountA(Planilha1.Range("A1:A1000"))
+
+numPares = 0
+numM5 = 0
+maior = Planilha1.Cells(1, 1)
+menor = Planilha1.Cells(1, 1)
+
+For linha = 1 To cont
+
+If Planilha1.Cells(linha, 1).Value Mod 2 = 0 Then
+    numPares = numPares + 1
+    End If
+    
+If Planilha1.Cells(linha, 1).Value Mod 5 = 0 Then
+    numM5 = numPares + 1
+    End If
+    
+If Planilha1.Cells(linha, 1).Value >= maior Then
+    maior = Planilha1.Cells(linha, 1).Value
+    posMa = linha
+    End If
+    
+
+If Planilha1.Cells(linha, 1).Value <= menor Then
+    menor = Planilha1.Cells(linha, 1).Value
+    posMe = linha
+    End If
+        
+Next linha
+
+Planilha1.Cells(1, 2).Value = "numeros pares:"
+Planilha1.Cells(2, 2).Value = "numeros mult. 5:"
+Planilha1.Cells(3, 2).Value = "pos. maior: "
+Planilha1.Cells(4, 2).Value = "pos. menor: "
+        
+Planilha1.Cells(1, 3).Value = numPares
+Planilha1.Cells(2, 3).Value = numM5
+Planilha1.Cells(3, 3).Value = posMa
+Planilha1.Cells(4, 3).Value = posMe
+ For i = 1 To 4
+  Cells(i, 2).Interior.Color = vbYellow
+  Next i
+  
+    
+End Sub
+
+
+Private Sub CommandButton1_Click()
+    Proposto01
+End Sub
